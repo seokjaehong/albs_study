@@ -151,3 +151,18 @@
 #
 # if __name__ == '__main__':
 #     main()
+
+
+# def room_state_update(self, room_id):
+#     r = open('../csv_files/room.csv', 'r', encoding='utf-8')
+#     room_lists = csv.reader(r)
+#
+#     f = open('../csv_files/room_new.csv', 'a', encoding='utf-8', newline='')
+#     wr = csv.writer(f)
+#
+#     for room in list(room_lists):
+#         if room[1] == room_id:
+#             room[5] = 'False'
+#         wr.writerow(room)
+#     f.close()
+#     shutil.copy('../csv_files/room_new.csv', '../csv_files/room.csv')
