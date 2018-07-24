@@ -2,11 +2,6 @@ from project.hotel_project.classes.file_handle import FileHandle
 
 
 class HotelManagement(FileHandle):
-    # def __init__(self):
-    #     self.room_data = self.instance.get_data("room")
-    #     self.customer_data = self.instance.get_data("customer")
-    #     self.reservation_data = self.instance.get_data("reservation")
-
     def select_menu(self):
         print('')
         print('++++++++++++++++++Hotel Management System+++++++++++++++++')

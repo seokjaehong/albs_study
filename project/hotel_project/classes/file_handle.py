@@ -24,17 +24,16 @@ class FileHandle:
         cls.instance = cls.__getInstance
         return cls.__getInstance
 
-    def get_parameter_fr_to_date(self):
+    def get_fr_to_date(self):
         result = []
-        print('---------1.예약하실 날짜를 입력해주세요 --------')
         while True:
             try:
-                print('시작날짜:YYYY-MM-DD 형식으로 입력해주세요')
+                print('시작날짜: YYYY-MM-DD 형식으로 입력해주세요')
                 string_fr_date = input()
-                fr_date = self.convert_input_datetime(string_fr_date)
-                print('종료날짜:YYYY-MM-DD 형식으로 입력해주세요')
+                fr_date = self.convert_string_datetime(string_fr_date)
+                print('종료날짜: YYYY-MM-DD 형식으로 입력해주세요')
                 string_to_date = input()
-                to_date = self.convert_input_datetime(string_to_date)
+                to_date = self.convert_string_datetime(string_to_date)
 
             except ValueError:
                 print('날짜형식에 맞춰서 입력해주세요')
@@ -48,20 +47,20 @@ class FileHandle:
                 break
         return result
 
-    def get_data_from_csv_file(self, select):
+    def get_data_from_csv_file(self, choice):
         result = []
-        if select == "room":
+        if choice == "room":
             lists = list(self.file_reader('./csv_files/room.csv', 'r', 'utf-8'))
 
             for i in lists:
                 if i[0] == 'single':
-                    result.append(SingleRoom(i[1], i[2], i[3], i[4], i[5]))
+                    result.append(SingleRoom(i[1], i[2], i[3], i[4]))
                 elif i[0] == 'double':
-                    result.append(DoubleRoom(i[1], i[2], i[3], i[4], i[5]))
+                    result.append(DoubleRoom(i[1], i[2], i[3], i[4]))
                 else:
-                    result.append(VipRoom(i[1], i[2], i[3], i[4], i[5], i[6]))
+                    result.append(VipRoom(i[1], i[2], i[3], i[4], i[5]))
 
-        elif select == "customer":
+        elif choice == "customer":
             customer_csv_lists = list(self.file_reader('./csv_files/customer.csv', 'r', 'utf-8'))
             for i in customer_csv_lists:
                 if i[0] == 'GeneralCustomer':
@@ -81,7 +80,7 @@ class FileHandle:
                 )
         return result
 
-    def show_list(self, data):
+    def show_data_list(self, data):
         for i in self.instance.get_data_from_csv_file(data):
             if data == "room":
                 i.show_room_information()
@@ -118,7 +117,7 @@ class FileHandle:
                 max_id_value = int(i[0])
         return max_id_value
 
-    def convert_input_datetime(self, str):
+    def convert_string_datetime(self, str):
         year, month, day = map(int, str.split('-'))
         result = datetime.date(year, month, day)
         return result
@@ -139,16 +138,16 @@ class FileHandle:
         self.file_writer('./csv_files/reservation.csv', 'a', 'utf-8', reservation, max_id_value)
         print(f'{reservation.customer.name:<5}님이 {fr_date}~{to_date}까지 {reservation.room.number:<5}호에 예약을 하셨습니다')
 
-    def create_reservation(self):
+    def create_booking(self):
         print('---------1.예약하실 날짜를 입력해주세요 --------')
-        reserve_date = self.instance.get_parameter_fr_to_date()
+        reserve_date = self.instance.get_fr_to_date()
 
         print('---------2.고객님의 ID를 선택해주세요--------')
-        self.instance.show_list("customer")
+        self.instance.show_data_list("customer")
         customer_id = input()
 
         print('---------3.예약할 룸 ID를 선택해주세요--------')
-        self.instance.show_list("room")
+        self.instance.show_data_list("room")
         room_id = input()
         print('---------4.예약을 시작합니다. --------')
 

@@ -1,29 +1,28 @@
 class Room:
-    def __init__(self, room_id, number, price, max_people, is_possible):
+    def __init__(self, room_id, number, price, max_people):
         self.room_id = room_id
         self.number = number
         self.price = price
         self.max_people = max_people
-        self.is_possible = is_possible
 
     def show_room_information(self):
         print('room_id:{}, number:{}, price:{}, '
               'max_people:{},예약가능여부:{}'.format(self.room_id, self.number, self.price,
-                                               self.max_people, self.is_possible))
+                                               self.max_people, sel))
 
     def order_clean_service(self):
         print('전체 방청소 서비스')
 
 
 class GeneralRoom(Room):
-    def __init__(self, room_id, number, price, max_people, is_possible):
-        super(GeneralRoom, self).__init__(room_id, number, price, max_people, is_possible)
+    def __init__(self, room_id, number, price, max_people):
+        super(GeneralRoom, self).__init__(room_id, number, price, max_people)
         self.breakfast = False
 
 
 class SingleRoom(GeneralRoom):
-    def __init__(self, room_id, number, price, max_people, is_possible):
-        super(SingleRoom, self).__init__(room_id, number, price, max_people, is_possible)
+    def __init__(self, room_id, number, price, max_people):
+        super(SingleRoom, self).__init__(room_id, number, price, max_people)
         self.clean_service = False
 
     def show_room_information(self):
@@ -34,8 +33,8 @@ class SingleRoom(GeneralRoom):
 
 
 class DoubleRoom(GeneralRoom):
-    def __init__(self, room_id, number, price, max_people, is_possible):
-        super(DoubleRoom, self).__init__(room_id, number, price, max_people, is_possible)
+    def __init__(self, room_id, number, price, max_people):
+        super(DoubleRoom, self).__init__(room_id, number, price, max_people)
         self.clean_service = True
 
     def order_clean_service(self):
@@ -49,8 +48,8 @@ class DoubleRoom(GeneralRoom):
 
 
 class VipRoom(Room):
-    def __init__(self, room_id, number, price, max_people, is_possible, breakfast):
-        super(VipRoom, self).__init__(room_id, number, price, max_people, is_possible)
+    def __init__(self, room_id, number, price, max_people, breakfast):
+        super(VipRoom, self).__init__(room_id, number, price, max_people)
         self.breakfast = breakfast
         self.clean_service = True
 

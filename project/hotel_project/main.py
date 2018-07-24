@@ -1,6 +1,4 @@
-from project.hotel_project.classes.file_handle import FileHandle
 from project.hotel_project.classes.hotel_mgnt import HotelManagement
-from project.hotel_project.classes.reservation import Reservation
 
 if __name__ == '__main__':
 
@@ -9,13 +7,13 @@ if __name__ == '__main__':
     while True:
         select = hotel.select_menu()
         if select == '1':
-            hotel.show_list("room")
+            hotel.show_data_list("room")
         elif select == '2':
-            hotel.show_list("customer")
+            hotel.show_data_list("customer")
         elif select == '3':
-            hotel.show_list("reservation")
+            hotel.show_data_list("reservation")
         elif select == '4':
-            hotel.create_reservation()
+            hotel.create_booking()
         else:
             print("종료되었습니다.")
             exit()
