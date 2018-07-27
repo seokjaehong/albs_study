@@ -1,6 +1,4 @@
 
-
-
 class Room():
     def __init__(self, room_id, number, price, max_people):
         self.room_id = room_id

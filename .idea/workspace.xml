@@ -4,14 +4,14 @@
     <list default="true" id="fe4bec99-1c1d-4616-8728-604ffa916360" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/hotel_project/classes/customer.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/classes/customer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/hotel_project/classes/file_handle.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/classes/file_handle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/hotel_project/classes/file_handle.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/classes/file_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/hotel_project/classes/hotel_mgnt.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/classes/hotel_mgnt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/hotel_project/classes/reservation.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/classes/reservation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/hotel_project/classes/room.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/classes/room.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/hotel_project/classes/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/hotel_project/csv_files/reservation.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/csv_files/reservation.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/hotel_project/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/hotel_project/utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/class.py" beforeDir="false" afterPath="$PROJECT_DIR$/study/class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study/singleton.py" beforeDir="false" afterPath="$PROJECT_DIR$/study/singleton/singleton.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +21,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/pure_python_study$hotel.coverage" NAME="hotel Coverage Results" MODIFIED="1532675486045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/hotel_project" />
+    <SUITE FILE_PATH="coverage/pure_python_study$hotel.coverage" NAME="hotel Coverage Results" MODIFIED="1532678866167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/hotel_project" />
     <SUITE FILE_PATH="coverage/pure_python_study$file_read.coverage" NAME="file_read Coverage Results" MODIFIED="1532328450019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/self_study" />
     <SUITE FILE_PATH="coverage/pure_python_study$Unnamed.coverage" NAME="oil_2 Coverage Results" MODIFIED="1532145519816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pure_python_study$oil_1.coverage" NAME="oil_1 Coverage Results" MODIFIED="1532144517827" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -32,8 +32,22 @@
       <file leaf-file-name="hotel_mgnt.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/hotel_mgnt.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
+            <state relative-caret-position="474">
+              <caret line="51" column="29" lean-forward="true" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#3813#5055#0" />
+                <element signature="e#5153#5550#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file_handler.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/file_handler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -41,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/utils.py">
+      <file leaf-file-name="room.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/room.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -53,17 +67,8 @@
       <file leaf-file-name="reservation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/reservation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="46" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/hotel_project/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="285">
+              <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -71,8 +76,8 @@
       <file leaf-file-name="customer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/customer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+            <state relative-caret-position="225">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -88,10 +93,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>'a</find>
-      <find>rs = list</find>
-      <find>rs+</find>
-      <find>r</find>
       <find>rs-</find>
       <find>rs</find>
       <find>list</find>
@@ -118,6 +119,10 @@
       <find>convert_string_datetime</find>
       <find>instance</find>
       <find>get_Fr</find>
+      <find>custom_data</find>
+      <find>self.file_hander</find>
+      <find>set_data_from_csv_file</find>
+      <find>check_value</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,9 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/oil_1.py" />
-        <option value="$PROJECT_DIR$/oil_2.py" />
-        <option value="$PROJECT_DIR$/rent_car/class.py" />
         <option value="$PROJECT_DIR$/Hotel/hotel.py" />
         <option value="$PROJECT_DIR$/Hotel/main.py" />
         <option value="$PROJECT_DIR$/Hotel/class.py" />
@@ -166,16 +168,20 @@
         <option value="$PROJECT_DIR$/project/__init__.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/singleton.py" />
-        <option value="$PROJECT_DIR$/project/hotel_project/classes/customer.py" />
         <option value="$PROJECT_DIR$/study/class.py" />
-        <option value="$PROJECT_DIR$/project/hotel_project/classes/room.py" />
         <option value="$PROJECT_DIR$/study/opentutorial.py" />
-        <option value="$PROJECT_DIR$/project/hotel_project/classes/reservation.py" />
-        <option value="$PROJECT_DIR$/project/hotel_project/classes/file_handle.py" />
-        <option value="$PROJECT_DIR$/project/hotel_project/main.py" />
         <option value="$PROJECT_DIR$/project/hotel_project/csv_files/reservation.csv" />
-        <option value="$PROJECT_DIR$/project/hotel_project/classes/hotel_mgnt.py" />
         <option value="$PROJECT_DIR$/project/hotel_project/classes/utils.py" />
+        <option value="$PROJECT_DIR$/study/singleton.py" />
+        <option value="$PROJECT_DIR$/study/singleton/singleton.py" />
+        <option value="$PROJECT_DIR$/study/singleton/singleton_metaclass.py" />
+        <option value="$PROJECT_DIR$/project/hotel_project/classes/file_handle.py" />
+        <option value="$PROJECT_DIR$/project/hotel_project/classes/room.py" />
+        <option value="$PROJECT_DIR$/project/hotel_project/main.py" />
+        <option value="$PROJECT_DIR$/project/hotel_project/classes/reservation.py" />
+        <option value="$PROJECT_DIR$/project/hotel_project/classes/customer.py" />
+        <option value="$PROJECT_DIR$/project/hotel_project/classes/file_handler.py" />
+        <option value="$PROJECT_DIR$/project/hotel_project/classes/hotel_mgnt.py" />
       </list>
     </option>
   </component>
@@ -239,6 +245,12 @@
             </path>
             <path>
               <item name="pure_python_study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pure_python_study" type="462c0819:PsiDirectoryNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="singleton" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pure_python_study" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -257,11 +269,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/project/hotel_project" />
+      <recent name="$PROJECT_DIR$/study/singleton" />
       <recent name="$PROJECT_DIR$/study" />
       <recent name="$PROJECT_DIR$/study/euiler" />
       <recent name="$PROJECT_DIR$/project" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/self_study" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/csv_files" />
@@ -279,7 +291,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.hotel">
+  <component name="RunManager" selected="Python.opentutorial">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="pure_python_study" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -318,6 +330,44 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="opentutorial" type="PythonConfigurationType" factoryName="Python">
+      <module name="pure_python_study" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/var/pyenv/versions/pure_python_study/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/study" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/study/opentutorial.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="singleton" type="PythonConfigurationType" factoryName="Python">
+      <module name="pure_python_study" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/var/pyenv/versions/pure_python_study/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/study/singleton" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/study/singleton/singleton_metaclass.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="study" type="PythonConfigurationType" factoryName="Python">
       <module name="pure_python_study" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -339,6 +389,8 @@
     </configuration>
     <list>
       <item itemvalue="Python.hotel" />
+      <item itemvalue="Python.opentutorial" />
+      <item itemvalue="Python.singleton" />
       <item itemvalue="Python.study" />
     </list>
   </component>
@@ -360,20 +412,20 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50078124" side_tool="true" weight="0.39973262" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.328877" />
-      <window_info anchor="bottom" x="0" y="271" width="1280" height="258" id="Run" order="2" sideWeight="0.484375" side_tool="true" weight="0.3957219" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50078124" side_tool="true" weight="0.39973262" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.328877" />
+      <window_info anchor="bottom" x="0" y="503" width="1280" height="258" id="Run" order="2" sideWeight="0.48515624" side_tool="true" weight="0.3957219" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49921876" weight="0.328877" />
-      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="SciView" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.515625" weight="0.3957219" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.51484376" weight="0.3957219" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -382,30 +434,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" x="0" y="271" width="1280" height="258" id="Run" order="2" sideWeight="0.47734374" side_tool="true" weight="0.3957219" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.328877" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49921876" weight="0.328877" />
-      <window_info anchor="right" x="0" y="0" width="270" height="600" id="Documentation" order="3" side_tool="true" weight="0.3296875" />
-      <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50078124" side_tool="true" weight="0.39973262" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="right" id="SciView" order="5" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.52265626" weight="0.3957219" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -434,20 +462,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="161" />
+      <option name="time" value="166" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#68#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/file_handle.py">
+    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/file_handler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1830">
           <caret line="127" column="43" lean-forward="true" selection-start-line="127" selection-start-column="43" selection-end-line="127" selection-end-column="43" />
@@ -475,7 +494,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/study/singleton.py">
+    <entry file="file://$PROJECT_DIR$/study/singleton/singleton.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
@@ -510,7 +529,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/file_handle.py">
+    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/file_handler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1875">
           <caret line="130" column="17" selection-start-line="130" selection-start-column="17" selection-end-line="130" selection-end-column="17" />
@@ -637,13 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/csv_files/customer.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -661,29 +673,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/study/singleton.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="22" lean-forward="true" selection-start-column="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/study/class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8">
-          <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/hotel_project/utils.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/room.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.1/python_stubs/-1278386695/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -692,52 +683,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/customer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/study/opentutorial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="71" column="15" lean-forward="true" selection-start-line="71" selection-start-column="15" selection-end-line="71" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/csv_files/room.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/file_handle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/reservation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="46" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/var/pyenv/versions/3.6.4/lib/python3.6/ast.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="84" selection-start-line="84" selection-end-line="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
@@ -751,19 +700,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/utils.py">
+    <entry file="file://$PROJECT_DIR$/study/singleton/singleton.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study/singleton/singleton_metaclass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/hotel_project/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-90">
+          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/hotel_project/csv_files/customer.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study/opentutorial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="19" lean-forward="true" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study/class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="875">
+          <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/reservation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/customer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/hotel_project/csv_files/room.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/room.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/hotel_project/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/file_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/hotel_project/classes/hotel_mgnt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
+        <state relative-caret-position="474">
+          <caret line="51" column="29" lean-forward="true" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#3813#5055#0" />
+            <element signature="e#5153#5550#0" />
           </folding>
         </state>
       </provider>

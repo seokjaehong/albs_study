@@ -5,7 +5,7 @@ class Customer:
         self.id = id
         self.name = name
 
-    def show_customer_information(self,data):
+    def show_customer_information(self):
         print('고객이름: {}'.format(self.id, self.name))
 
 
@@ -26,4 +26,4 @@ class VipCustomer(Customer):
 
     def show_customer_information(self):
         print(
-            f'ID: {self.id:<2}| 고객명: {self.name:<12}| 추천조식:{self.breakfast:<5}, 차량번호:{self.car_number}')
+            f'ID: {self.id:<2}| 고객명: {self.name:<12} | 추천조식:{self.breakfast:<5}, 차량번호:{self.car_number}')

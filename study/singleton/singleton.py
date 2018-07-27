@@ -15,7 +15,6 @@ class Singleton(type):
 class MessageManager(metaclass=Singleton):
     print('ab')
 
-
 a= MessageManager.instance('test')
 # a = MessageManager()
 print(a)

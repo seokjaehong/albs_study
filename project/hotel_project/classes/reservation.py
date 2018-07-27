@@ -1,5 +1,6 @@
 import ast
 
+
 class Reservation():
     def __init__(self, id, customer, room, fr_date, to_date):
         self.id = id
@@ -15,6 +16,6 @@ class Reservation():
         customer_dic = ast.literal_eval(self.customer)
 
         print(
-            f'|예약기간은: {from_date:<10} ~ {to_date:<10}입니다.|'
-            f' 방 번호:{room_dic["number"]:>6}호| 고객명:{customer_dic["name"]}'
+            f'| 고객명:{customer_dic["name"]}|방 번호:{room_dic["number"]:>6}호|'
+            f' 예약기간은: {from_date:<10} ~ {to_date:<10}입니다.|'
         )

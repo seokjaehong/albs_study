@@ -2,13 +2,29 @@ import ast
 import datetime
 
 from .customer import GeneralCustomer, VipCustomer
-from .file_handle import FileHandle
+from .file_handler import FileHandler
 from .reservation import Reservation
 from .room import SingleRoom, DoubleRoom, VipRoom
-from .utils import get_fr_to_date
+from project.hotel_project.utils import get_fr_to_date
 
 
-class HotelManagement(FileHandle):
+class Singleton():
+    __instance = None
+
+    @classmethod
+    def __getInstance(cls):
+        return cls.__instance
+
+    @classmethod
+    def instance(cls, *args, **kargs):
+        cls.__instance = cls(*args, **kargs)
+        cls.instance = cls.__getInstance
+        return cls.__instance
+
+
+class HotelManagement(Singleton):
+    def __init__(self):
+        self.file_handler = FileHandler()
 
     def select_menu(self):
         print('')
@@ -38,17 +54,17 @@ class HotelManagement(FileHandle):
     def set_data_from_csv_file(self, choice):
         result = []
         if choice == "room":
-            lists = list(self.file_reader('./csv_files/room.csv', 'r', 'utf-8'))
-            for i in lists:
-                if i[0] == 'single':
-                    result.append(SingleRoom(i[1], i[2], i[3], i[4]))
-                elif i[0] == 'double':
-                    result.append(DoubleRoom(i[1], i[2], i[3], i[4]))
+            rooms = list(self.file_handler.file_reader('./csv_files/room.csv', 'r', 'utf-8'))
+            for room in rooms:
+                if room[0] == 'single':
+                    result.append(SingleRoom(room[1], room[2], room[3], room[4]))
+                elif room[0] == 'double':
+                    result.append(DoubleRoom(room[1], room[2], room[3], room[4]))
                 else:
-                    result.append(VipRoom(i[1], i[2], i[3], i[4], i[5]))
+                    result.append(VipRoom(room[1], room[2], room[3], room[4], room[5]))
 
         elif choice == "customer":
-            customer_csv_lists = list(self.file_reader('./csv_files/customer.csv', 'r', 'utf-8'))
+            customer_csv_lists = list(self.file_handler.file_reader('./csv_files/customer.csv', 'r', 'utf-8'))
             for i in customer_csv_lists:
                 if i[0] == 'GeneralCustomer':
                     result.append(GeneralCustomer(i[1], i[2], i[3]))
@@ -56,7 +72,7 @@ class HotelManagement(FileHandle):
                     result.append(VipCustomer(i[1], i[2], i[3], i[4]))
 
         else:
-            reservation_lists = list(self.file_reader('./csv_files/reservation.csv', 'r', 'utf-8'))
+            reservation_lists = list(self.file_handler.file_reader('./csv_files/reservation.csv', 'r', 'utf-8'))
             for i in reservation_lists:
                 result.append(
                     Reservation(
@@ -89,13 +105,13 @@ class HotelManagement(FileHandle):
     def save_reservation_detail(self, customer_id, room_id, fr_date, to_date):
         if self.set_data_from_csv_file('reservation'):
             reservation_data = self.set_data_from_csv_file('reservation')
-            check_value = self.check_reservation_available(reservation_data, room_id, fr_date, to_date)
+            check_value = self.check_available_reservation(reservation_data, room_id, fr_date, to_date)
         else:
             check_value = True
 
         if check_value:
             result = []
-            max_id_value = self.file_reader_get_max_id('./csv_files/reservation.csv', 'r', 'utf-8')
+            max_id_value = self.file_handler.file_reader_get_max_id('./csv_files/reservation.csv', 'r', 'utf-8')
             customer_data = self.set_data_from_csv_file('customer')
             room_data = self.set_data_from_csv_file('room')
 
@@ -109,12 +125,12 @@ class HotelManagement(FileHandle):
 
             reservation = Reservation(id=max_id_value + 1, customer=result[0], room=result[1], fr_date=fr_date,
                                       to_date=to_date)
-            self.file_writer('./csv_files/reservation.csv', 'a', 'utf-8', reservation, max_id_value)
+            self.file_handler.file_writer('./csv_files/reservation.csv', 'a', 'utf-8', reservation, max_id_value)
             print(f'{reservation.customer.name:<5}님이 {fr_date}~{to_date}까지 {reservation.room.number:<5}호에 예약을 하셨습니다')
         else:
             print('해당 기간에는 이미 예약이 되어있습니다.')
 
-    def check_reservation_available(self, reservation_data, room_id, fr_date, to_date):
+    def check_available_reservation(self, reservation_data, room_id, fr_date, to_date):
         for i in reservation_data:
             room_dic = ast.literal_eval(i.room)
             if room_dic['room_id'] == room_id:
@@ -124,4 +140,4 @@ class HotelManagement(FileHandle):
                     return False
                 else:
                     return True
-        return False
+        return True

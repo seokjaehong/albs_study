@@ -1,22 +1,8 @@
 import csv
 
 
-class FileHandle:
-    __instance = None
-
-    @classmethod
-    def getinstance(cls):
-        # print('#3', cls)
-        return cls.__instance
-
-    @classmethod
-    def instance(cls, *args, **kwargs):
-        # print('#1', cls(*args, **kargs))
-        cls.__instance = cls(*args, **kwargs)
-        # print('#2', cls.__instance)
-        cls.instance = cls.getinstance
-        return cls.__instance
-
+class FileHandler:
+    #생성자 room , reservation , customer
     def file_reader(self, file_name, read_select_type, encoding):
         r = open(file_name, read_select_type, encoding=encoding)
         rs = list(csv.reader(r))
