@@ -5,7 +5,7 @@ class Customer:
         self.id = id
         self.name = name
 
-    def show_customer_information(self):
+    def show_customer_information(self,data):
         print('고객이름: {}'.format(self.id, self.name))
 
 

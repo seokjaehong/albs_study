@@ -3,7 +3,11 @@ from project.hotel_project.classes.hotel_mgnt import HotelManagement
 if __name__ == '__main__':
 
     hotel = HotelManagement.instance()
+    hotel2 = HotelManagement.instance()
+    # print(hotel==hotel2)
+    # print(hotel is hotel2)
 
+    result = []
     while True:
         select = hotel.select_menu()
         if select == '1':
@@ -13,7 +17,7 @@ if __name__ == '__main__':
         elif select == '3':
             hotel.show_data_list("reservation")
         elif select == '4':
-            hotel.create_booking()
+            hotel.create_reservation()
         else:
             print("종료되었습니다.")
             exit()

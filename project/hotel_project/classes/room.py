@@ -1,4 +1,7 @@
-class Room:
+
+
+
+class Room():
     def __init__(self, room_id, number, price, max_people):
         self.room_id = room_id
         self.number = number
@@ -7,8 +10,8 @@ class Room:
 
     def show_room_information(self):
         print('room_id:{}, number:{}, price:{}, '
-              'max_people:{},예약가능여부:{}'.format(self.room_id, self.number, self.price,
-                                               self.max_people, sel))
+              'max_people:{}'.format(self.room_id, self.number, self.price,
+                                     self.max_people))
 
     def order_clean_service(self):
         print('전체 방청소 서비스')
