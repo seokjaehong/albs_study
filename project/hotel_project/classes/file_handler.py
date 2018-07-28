@@ -41,24 +41,88 @@ class FileHandler:
         r.close()
         return result
 
-    def write_csv_file(self, obj, max_id_value):
-        f = open(self.CSV_RESERVATION_FILE, 'a', encoding=self.ENCODING, newline='')
-        wr = csv.writer(f)
-        wr.writerow([
-            max_id_value + 1,
-            obj.customer.__dict__,
-            obj.room.__dict__,
-            obj.fr_date,
-            obj.to_date
-        ])
-        f.close()
+    def write_csv_file(self, obj, max_id_value, class_name, customer_type=None):
 
-    def get_reservation_max_id(self):
+        if class_name == "reservation":
+            f = open(self.CSV_RESERVATION_FILE, 'a', encoding=self.ENCODING, newline='')
+            wr = csv.writer(f)
+            wr.writerow([
+                max_id_value + 1,
+                obj.customer.__dict__,
+                obj.room.__dict__,
+                obj.fr_date,
+                obj.to_date
+            ])
+            f.close()
+        elif class_name == "customer":
+            f = open(self.CSV_CUSTOMER_FILE, 'a', encoding=self.ENCODING, newline='')
+            wr = csv.writer(f)
+            if customer_type == '1':
+                wr.writerow([
+                    'GeneralCustomer', max_id_value + 1, obj.name, obj.email
+                ])
+            elif customer_type == '2':
+                wr.writerow([
+                    'VipCustomer', max_id_value + 1, obj.name, obj.car_number, obj.breakfast
+                ])
+            f.close()
+        elif class_name == "room":
+            f = open(self.CSV_ROOM_FILE, 'a', encoding=self.ENCODING, newline='')
+            wr = csv.writer(f)
+            if customer_type == '1':
+                wr.writerow([
+                    'single', max_id_value + 1, obj.number, obj.price, obj.max_people
+                ])
+            elif customer_type == '2':
+                wr.writerow([
+                    'double', max_id_value + 1, obj.number, obj.price, obj.max_people
+                ])
+            elif customer_type == '3':
+                wr.writerow([
+                    'VIP', max_id_value + 1, obj.number, obj.price, obj.max_people, obj.breakfast
+                ])
+            f.close()
+
+    # def write_reservation_csv_file(self, obj, max_id_value):
+    #     f = open(self.CSV_RESERVATION_FILE, 'a', encoding=self.ENCODING, newline='')
+    #     wr = csv.writer(f)
+    #     wr.writerow([
+    #         max_id_value + 1,
+    #         obj.customer.__dict__,
+    #         obj.room.__dict__,
+    #         obj.fr_date,
+    #         obj.to_date
+    #     ])
+    #     f.close()
+    #
+    # def write_customer_csv_file(self, obj, max_id_value, customer_type):
+    #     f = open(self.CSV_CUSTOMER_FILE, 'a', encoding=self.ENCODING, newline='')
+    #     wr = csv.writer(f)
+    #     if customer_type == '1':
+    #         wr.writerow([
+    #             'GeneralCustomer', max_id_value + 1, obj.name, obj.email
+    #         ])
+    #     elif customer_type == '2':
+    #         wr.writerow([
+    #             'VipCustomer', max_id_value + 1, obj.name, obj.car_number, obj.breakfast
+    #         ])
+    #     f.close()
+
+    def get_max_id(self, class_name):
         max_id_value = 0
-        for reservation in self.reservation_data:
-            if int(reservation.id) > max_id_value:
-                max_id_value = int(reservation.id)
+        data_list = []
+        if class_name == "reservation":
+            data_list = self.reservation_data
+        elif class_name == "customer":
+            data_list = self.customer_data
+        elif class_name == "room":
+            data_list = self.room_data
+
+        for data in data_list:
+            if int(data.id) > max_id_value:
+                max_id_value = int(data.id)
         return max_id_value
+
 
     def cancle_reservation_csv_file(self, reservation_id):
         r = open(self.CSV_RESERVATION_FILE, 'r', encoding=self.ENCODING)

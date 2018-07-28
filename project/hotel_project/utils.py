@@ -1,4 +1,5 @@
 import datetime
+import re
 
 
 def convert_string_datetime(str):
@@ -31,3 +32,8 @@ def get_fr_to_date():
         'fr_date': fr_date,
         'to_date': to_date
     }
+
+
+def is_valid_email(email):
+    if len(email) > 7:
+        return bool(re.match("^.+@(\[?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email))
