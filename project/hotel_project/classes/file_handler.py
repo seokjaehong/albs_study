@@ -1,5 +1,6 @@
 import csv
 import datetime
+import shutil
 
 from project.hotel_project.classes.customer import GeneralCustomer, VipCustomer
 from project.hotel_project.classes.reservation import Reservation
@@ -10,6 +11,7 @@ class FileHandler:
     CSV_ROOM_FILE = './csv_files/room.csv'
     CSV_CUSTOMER_FILE = './csv_files/customer.csv'
     CSV_RESERVATION_FILE = './csv_files/reservation.csv'
+    CSV_RESERVATION_TEMP_FILE = './temp_files/reservation_temp.csv'
     ENCODING = 'utf-8'
 
     def __init__(self):
@@ -57,3 +59,15 @@ class FileHandler:
             if int(reservation.id) > max_id_value:
                 max_id_value = int(reservation.id)
         return max_id_value
+
+    def cancle_reservation_csv_file(self, reservation_id):
+        r = open(self.CSV_RESERVATION_FILE, 'r', encoding=self.ENCODING)
+        reservation_list = csv.reader(r)
+        f = open(self.CSV_RESERVATION_TEMP_FILE, 'a', encoding=self.ENCODING, newline='')
+        temp_reservation_list = csv.writer(f)
+
+        for reservation in reservation_list:
+            if reservation[0] != reservation_id:
+                temp_reservation_list.writerow(reservation)
+        f.close()
+        shutil.copy(self.CSV_RESERVATION_TEMP_FILE, self.CSV_RESERVATION_FILE)

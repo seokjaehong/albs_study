@@ -24,13 +24,14 @@ class HotelManagement(Singleton):
 
     def select_menu(self):
         print('')
-        print('++++++++++++++++++Hotel Management System+++++++++++++++++')
-        print('++++++++++++++++++Please Select Menu++++++++++++++++++++++')
-        print('++++++++++++++++++1.방리스트보기+++++++++++++++++++++++++++++')
-        print('++++++++++++++++++2.고객리스트보기++++++++++++++++++++++++++++')
-        print('++++++++++++++++++3.예약리스트보기++++++++++++++++++++++++++++')
-        print('++++++++++++++++++4.예약하기+++++++++++++++++++++++++++++++++')
-        print('++++++++++++++++++기타.밖으로 나가기+++++++++++++++++++++++++++')
+        print('++++++++++++++++++ Hotel Management System+++++++++++++++++')
+        print('++++++++++++++++++ Please Select Menu     +++++++++++++++++')
+        print('++++++++++++++++++ 1.방리스트보기            +++++++++++++++++')
+        print('++++++++++++++++++ 2.고객리스트보기           +++++++++++++++++')
+        print('++++++++++++++++++ 3.예약리스트보기           +++++++++++++++++')
+        print('++++++++++++++++++ 4.예약하기               ++++++++++++++++++')
+        print('++++++++++++++++++ 5.예약취소하기            +++++++++++++++++++')
+        print('++++++++++++++++++ 기타.밖으로 나가기         ++++++++++++++++++')
         select = input()
         return select
 
@@ -55,57 +56,82 @@ class HotelManagement(Singleton):
         self.show_data_list("customer")
         customer_id = input()
 
-        while True:
-            # 1. 예약가능한 방만 보여주기
-            self.show_available_room_list()
-            print('---------3.예약할 룸 ID를 선택해주세요--------')
-            self.show_data_list("room")
+        print('---------3.예약할 룸 ID를 선택해주세요--------')
+        room_id = self.check_room_id(fr_date, to_date)
 
-            room_id = input()
+        print('---------4.예약을 시작합니다. --------')
+        self.save_reservation_detail(customer_id, room_id, fr_date, to_date)
 
-            print('---------4.예약을 시작합니다. --------')
-
-            self.save_reservation_detail(customer_id, room_id, fr_date, to_date)
-            print('---------5.예약이 완료되었습니다.--------')
+        print('---------5.예약이 완료되었습니다.--------')
 
     def show_available_room_list(self, fr_date, to_date):
-        pass
+
+        reservable_room_list = self.file_handler.room_data
+        reservation_list = self.file_handler.reservation_data
+
+        for reservation in reservation_list:
+            room_dic = ast.literal_eval(reservation.room)
+            if reservation.fr_date.date() <= fr_date < reservation.to_date.date() or reservation.fr_date.date() > to_date >= reservation.to_date.date():
+                for room in reservable_room_list:
+                    if room.room_id == room_dic['room_id']:
+                        reservable_room_list.remove(room)
+
+        for room in reservable_room_list:
+            room.show_room_information()
+        return reservable_room_list
 
     def save_reservation_detail(self, customer_id, room_id, fr_date, to_date):
-        if self.file_handler.reservation_data:
-            check_value = self.check_available_reservation(room_id, fr_date, to_date)
-        else:
-            check_value = True
+        result = []
 
-        if check_value:
-            result = []
+        for customer in self.file_handler.customer_data:
+            if customer.id == customer_id:
+                result.append(customer)
 
-            for customer in self.file_handler.customer_data:
-                if customer.id == customer_id:
-                    result.append(customer)
+        for room in self.file_handler.room_data:
+            if room.room_id == room_id:
+                result.append(room)
 
-            for room in self.file_handler.room_data:
+        max_id_value = self.file_handler.get_reservation_max_id()
+        reservation = Reservation(id=max_id_value + 1, customer=result[0], room=result[1], fr_date=fr_date,
+                                  to_date=to_date)
+
+        self.file_handler.write_csv_file(reservation, max_id_value)
+
+        print(f'{reservation.customer.name:<5}님이 {fr_date}~{to_date}까지 {reservation.room.number:<5}호에 예약을 하셨습니다')
+
+    def check_room_id(self, fr_date, to_date):
+        check_value = True
+        while check_value:
+            reservable_room_list = self.show_available_room_list(fr_date, to_date)
+            room_id = input()
+
+            for room in reservable_room_list:
                 if room.room_id == room_id:
-                    result.append(room)
+                    check_value = False
 
-            max_id_value = self.file_handler.get_reservation_max_id()
-            reservation = Reservation(id=max_id_value + 1, customer=result[0], room=result[1], fr_date=fr_date,
-                                      to_date=to_date)
+            if not check_value:
+                return room_id
+            else:
+                print('예약가능한 룸ID를 입력해주세요')
 
-            self.file_handler.write_csv_file(reservation, max_id_value)
+    def check_reservation_id(self):
+        check_value = True
+        while check_value:
+            print("취소하실 예약ID를 선택해주세요")
+            for reservation in self.file_handler.reservation_data:
+                reservation.show_reservation_information()
 
-            print(f'{reservation.customer.name:<5}님이 {fr_date}~{to_date}까지 {reservation.room.number:<5}호에 예약을 하셨습니다')
-        else:
-            print('해당 기간에는 이미 예약이 되어있습니다.')
+            reservation_id = input()
+            for reservation in self.file_handler.reservation_data:
+                if reservation.id == reservation_id:
+                    check_value = False
 
-    def check_available_reservation(self, room_id, fr_date, to_date):
-        for reservation in self.file_handler.reservation_data:
-            room_dic = ast.literal_eval(reservation.room)
-            if room_dic['room_id'] == room_id:
-                if reservation.fr_date.date() < fr_date <= reservation.to_date.date():
-                    return False
-                elif reservation.fr_date.date() <= to_date < reservation.to_date.date():
-                    return False
-                else:
-                    return True
-        return True
+            if not check_value:
+                return reservation_id
+            else:
+                print('취소가능한 예약ID를 입력해주세요')
+
+    def cancle_reservation(self):
+        reservation_cancle_id = self.check_reservation_id()
+        self.file_handler.cancle_reservation_csv_file(reservation_id=reservation_cancle_id)
+        print('예약이 성공적으로 취소되었습니다.')

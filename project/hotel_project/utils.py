@@ -8,7 +8,6 @@ def convert_string_datetime(str):
 
 
 def get_fr_to_date():
-    result = []
     while True:
         try:
             print('시작날짜: YYYY-MM-DD 형식으로 입력해주세요')
