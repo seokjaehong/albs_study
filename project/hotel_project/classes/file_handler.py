@@ -82,7 +82,7 @@ class FileHandler:
                     'VIP', max_id_value + 1, obj.number, obj.price, obj.max_people, obj.breakfast
                 ])
             f.close()
-
+#test
     def get_max_id(self, class_name):
         max_id_value = 0
         data_list = []
