@@ -32,3 +32,5 @@ def get_fr_to_date():
         'fr_date': fr_date,
         'to_date': to_date
     }
+def get_room_id():
+    result=[]
