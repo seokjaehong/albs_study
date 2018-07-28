@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fe4bec99-1c1d-4616-8728-604ffa916360" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/project/hotel_project/csv_files/reservation.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/csv_files/reservation.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/hotel_project/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/hotel_project/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="fe4bec99-1c1d-4616-8728-604ffa916360" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +33,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/hotel_project/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="45">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -170,8 +167,8 @@
         <option value="$PROJECT_DIR$/project/hotel_project/classes/reservation.py" />
         <option value="$PROJECT_DIR$/project/hotel_project/classes/customer.py" />
         <option value="$PROJECT_DIR$/project/hotel_project/classes/file_handler.py" />
-        <option value="$PROJECT_DIR$/project/hotel_project/main.py" />
         <option value="$PROJECT_DIR$/project/hotel_project/classes/hotel_mgnt.py" />
+        <option value="$PROJECT_DIR$/project/hotel_project/main.py" />
       </list>
     </option>
   </component>
@@ -399,7 +396,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.328877" />
-      <window_info anchor="bottom" x="0" y="503" width="1280" height="258" id="Run" order="2" sideWeight="0.4859375" side_tool="true" visible="true" weight="0.3957219" />
+      <window_info anchor="bottom" x="0" y="503" width="1280" height="258" id="Run" order="2" sideWeight="0.4859375" side_tool="true" weight="0.3957219" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
@@ -408,7 +405,7 @@
       <window_info anchor="right" id="SciView" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5140625" visible="true" weight="0.3957219" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5140625" weight="0.3957219" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -784,8 +781,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/hotel_project/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
