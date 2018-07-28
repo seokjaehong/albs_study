@@ -2,4 +2,8 @@
 2,"{'id': '4', 'name': '김연아', 'car_number': 'ABS30', 'breakfast': '닭가슴살'}","{'room_id': '4', 'number': '13304', 'price': '30000', 'max_people': '2', 'breakfast': '파스타', 'clean_service': True}",2018-08-01,2018-08-03
 3,"{'id': '4', 'name': '김연아', 'car_number': 'ABS30', 'breakfast': '닭가슴살'}","{'room_id': '1', 'number': '10001', 'price': '10000', 'max_people': '2', 'breakfast': False, 'clean_service': False}",2018-08-01,2018-08-04
 4,"{'id': '4', 'name': '김연아', 'car_number': 'ABS30', 'breakfast': '닭가슴살'}","{'room_id': '3', 'number': '103', 'price': '18000', 'max_people': '3', 'breakfast': False, 'clean_service': True}",2018-08-08,2018-08-10
+<<<<<<< HEAD
 5,"{'id': '1', 'name': '사나', 'email': 'sana@gmail.com'}","{'room_id': '1', 'number': '10001', 'price': '10000', 'max_people': '2', 'breakfast': False, 'clean_service': False}",2018-09-01,2018-09-03
+=======
+5,"{'id': '2', 'name': '쯔위', 'email': 'zhui@gmail.com'}","{'room_id': '5', 'number': '201', 'price': '35000', 'max_people': '4', 'breakfast': '피자', 'clean_service': True}",2018-08-01,2018-08-03
+>>>>>>> filehandler
