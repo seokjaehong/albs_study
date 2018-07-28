@@ -3,10 +3,6 @@ from project.hotel_project.classes.hotel_mgnt import HotelManagement
 if __name__ == '__main__':
 
     hotel_manager = HotelManagement.instance()
-    # hotel_manager2 = HotelManagement.instance()
-    # print(hotel_manager==hotel_manager2)
-    # print(hotel_manager is hotel_manager2)
-
     result = []
     while True:
         select = hotel_manager.select_menu()

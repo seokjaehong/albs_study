@@ -27,10 +27,8 @@ def get_fr_to_date():
             print('체크아웃 날짜는 체크인 날짜보다 작을수 없습니다.')
             continue
         else:
-            result.append(
-                {
-                    'fr_date': fr_date,
-                    'to_date': to_date
-                })
             break
-    return result
+    return {
+        'fr_date': fr_date,
+        'to_date': to_date
+    }

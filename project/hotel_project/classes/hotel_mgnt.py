@@ -48,25 +48,32 @@ class HotelManagement(Singleton):
     def create_reservation(self):
         print('---------1.예약하실 날짜를 입력해주세요 --------')
         reserve_date = get_fr_to_date()
+        fr_date = reserve_date['fr_date']
+        to_date = reserve_date['to_date']
 
         print('---------2.고객님의 ID를 선택해주세요--------')
         self.show_data_list("customer")
         customer_id = input()
 
-        print('---------3.예약할 룸 ID를 선택해주세요--------')
-        self.show_data_list("room")
+        while True:
+            # 1. 예약가능한 방만 보여주기
+            self.show_available_room_list()
+            print('---------3.예약할 룸 ID를 선택해주세요--------')
+            self.show_data_list("room")
 
-        room_id = input()
-        print('---------4.예약을 시작합니다. --------')
+            room_id = input()
 
-        self.save_reservation_detail(customer_id, room_id,
-                                     reserve_date[0]['fr_date'],
-                                     reserve_date[0]['to_date'])
-        print('---------5.예약이 완료되었습니다.--------')
+            print('---------4.예약을 시작합니다. --------')
+
+            self.save_reservation_detail(customer_id, room_id, fr_date, to_date)
+            print('---------5.예약이 완료되었습니다.--------')
+
+    def show_available_room_list(self, fr_date, to_date):
+        pass
 
     def save_reservation_detail(self, customer_id, room_id, fr_date, to_date):
         if self.file_handler.reservation_data:
-            check_value = self.check_available_reservation(room_id, fr_date,to_date)
+            check_value = self.check_available_reservation(room_id, fr_date, to_date)
         else:
             check_value = True
 
