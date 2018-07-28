@@ -16,6 +16,6 @@ class Reservation():
         customer_dic = ast.literal_eval(self.customer)
 
         print(
-            f'| 고객명:{customer_dic["name"]:<4}|방 번호:{room_dic["number"]:>6}호|'
+            f'| 예약ID: {self.id:<3}| 고객명:{customer_dic["name"]:<4}|방 번호:{room_dic["number"]:>6}호|'
             f' 예약기간은: {from_date:<10} ~ {to_date:<10}입니다.|'
         )

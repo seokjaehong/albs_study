@@ -1,5 +1,3 @@
-
-
 class Customer:
     def __init__(self, id, name):
         self.id = id
@@ -25,5 +23,9 @@ class VipCustomer(Customer):
         self.breakfast = breakfast
 
     def show_customer_information(self):
+        if not self.breakfast:
+            breakfast = '없음'
+        else:
+            breakfast = self.breakfast
         print(
-            f'ID: {self.id:<2}| 고객명: {self.name:<12} | 추천조식:{self.breakfast:<5}, 차량번호:{self.car_number}')
+            f'ID: {self.id:<2}| 고객명: {self.name:<12} | 추천조식:{breakfast:<5}, 차량번호:{self.car_number}')
