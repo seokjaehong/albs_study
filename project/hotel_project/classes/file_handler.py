@@ -83,31 +83,6 @@ class FileHandler:
                 ])
             f.close()
 
-    # def write_reservation_csv_file(self, obj, max_id_value):
-    #     f = open(self.CSV_RESERVATION_FILE, 'a', encoding=self.ENCODING, newline='')
-    #     wr = csv.writer(f)
-    #     wr.writerow([
-    #         max_id_value + 1,
-    #         obj.customer.__dict__,
-    #         obj.room.__dict__,
-    #         obj.fr_date,
-    #         obj.to_date
-    #     ])
-    #     f.close()
-    #
-    # def write_customer_csv_file(self, obj, max_id_value, customer_type):
-    #     f = open(self.CSV_CUSTOMER_FILE, 'a', encoding=self.ENCODING, newline='')
-    #     wr = csv.writer(f)
-    #     if customer_type == '1':
-    #         wr.writerow([
-    #             'GeneralCustomer', max_id_value + 1, obj.name, obj.email
-    #         ])
-    #     elif customer_type == '2':
-    #         wr.writerow([
-    #             'VipCustomer', max_id_value + 1, obj.name, obj.car_number, obj.breakfast
-    #         ])
-    #     f.close()
-
     def get_max_id(self, class_name):
         max_id_value = 0
         data_list = []
@@ -122,7 +97,6 @@ class FileHandler:
             if int(data.id) > max_id_value:
                 max_id_value = int(data.id)
         return max_id_value
-
 
     def cancle_reservation_csv_file(self, reservation_id):
         r = open(self.CSV_RESERVATION_FILE, 'r', encoding=self.ENCODING)
