@@ -14,6 +14,8 @@ if __name__ == '__main__':
             hotel_manager.show_data_list("reservation")
         elif select == '4':
             hotel_manager.create_reservation()
+        elif select == '5':
+            hotel_manager.cancle_reservation()
         else:
             print("종료되었습니다.")
             exit()
