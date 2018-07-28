@@ -1,16 +1,46 @@
 import csv
+import datetime
+
+from project.hotel_project.classes.customer import GeneralCustomer, VipCustomer
+from project.hotel_project.classes.reservation import Reservation
+from project.hotel_project.classes.room import SingleRoom, DoubleRoom, VipRoom
 
 
 class FileHandler:
-    #생성자 room , reservation , customer
-    def file_reader(self, file_name, read_select_type, encoding):
-        r = open(file_name, read_select_type, encoding=encoding)
-        rs = list(csv.reader(r))
-        r.close()
-        return rs
+    CSV_ROOM_FILE = './csv_files/room.csv'
+    CSV_CUSTOMER_FILE = './csv_files/customer.csv'
+    CSV_RESERVATION_FILE = './csv_files/reservation.csv'
+    ENCODING = 'utf-8'
 
-    def file_writer(self, file_name, read_select_type, encoding, obj, max_id_value):
-        f = open(file_name, read_select_type, encoding=encoding, newline='')
+    def __init__(self):
+
+        self.room_data = self.read_csv_file(self.CSV_ROOM_FILE, self.ENCODING)
+        self.customer_data = self.read_csv_file(self.CSV_CUSTOMER_FILE, self.ENCODING)
+        self.reservation_data = self.read_csv_file(self.CSV_RESERVATION_FILE, self.ENCODING)
+
+    def read_csv_file(self, file_name, encoding):
+        r = open(file_name, 'r', encoding=encoding)
+        data_list = list(csv.reader(r))
+        result = []
+        for data in data_list:
+            if data[0] == 'single':
+                result.append(SingleRoom(data[1], data[2], data[3], data[4]))
+            elif data[0] == 'double':
+                result.append(DoubleRoom(data[1], data[2], data[3], data[4]))
+            elif data[0] == 'VIP':
+                result.append(VipRoom(data[1], data[2], data[3], data[4], data[5]))
+            elif data[0] == 'GeneralCustomer':
+                result.append(GeneralCustomer(data[1], data[2], data[3]))
+            elif data[0] == 'VipCustomer':
+                result.append(VipCustomer(data[1], data[2], data[3], data[4]))
+            else:
+                result.append(Reservation(data[0], data[1], data[2], datetime.datetime.strptime(data[3], '%Y-%m-%d'),
+                                          datetime.datetime.strptime(data[4], '%Y-%m-%d')))
+        r.close()
+        return result
+
+    def write_csv_file(self, obj, max_id_value):
+        f = open(self.CSV_RESERVATION_FILE, 'a', encoding=self.ENCODING, newline='')
         wr = csv.writer(f)
         wr.writerow([
             max_id_value + 1,
@@ -21,10 +51,9 @@ class FileHandler:
         ])
         f.close()
 
-    def file_reader_get_max_id(self, file_name, read_select_type, encoding):
-        rs = self.file_reader(file_name, read_select_type, encoding)
+    def get_reservation_max_id(self):
         max_id_value = 0
-        for i in rs:
-            if int(i[0]) > max_id_value:
-                max_id_value = int(i[0])
+        for reservation in self.reservation_data:
+            if int(reservation.id) > max_id_value:
+                max_id_value = int(reservation.id)
         return max_id_value
