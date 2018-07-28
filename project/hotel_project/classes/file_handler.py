@@ -82,7 +82,7 @@ class FileHandler:
                     'VIP', max_id_value + 1, obj.number, obj.price, obj.max_people, obj.breakfast
                 ])
             f.close()
-#test
+
     def get_max_id(self, class_name):
         max_id_value = 0
         data_list = []
@@ -109,3 +109,4 @@ class FileHandler:
                 temp_reservation_list.writerow(reservation)
         f.close()
         shutil.copy(self.CSV_RESERVATION_TEMP_FILE, self.CSV_RESERVATION_FILE)
+
