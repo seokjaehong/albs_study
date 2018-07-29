@@ -27,11 +27,11 @@ class FileHandler:
         result = []
         for data in data_list:
             if data[0] == 'single':
-                result.append(SingleRoom(data[1], data[2], data[3], data[4]))
+                result.append(SingleRoom(data[1], data[2], int(data[3]), data[4]))
             elif data[0] == 'double':
-                result.append(DoubleRoom(data[1], data[2], data[3], data[4]))
+                result.append(DoubleRoom(data[1], data[2], int(data[3]), data[4]))
             elif data[0] == 'VIP':
-                result.append(VipRoom(data[1], data[2], data[3], data[4], data[5]))
+                result.append(VipRoom(data[1], data[2], int(data[3]), data[4], data[5]))
             elif data[0] == 'GeneralCustomer':
                 result.append(GeneralCustomer(data[1], data[2], data[3]))
             elif data[0] == 'VipCustomer':

@@ -22,7 +22,7 @@ class Singleton():
 # class HotelManagement():
 class HotelManagement(Singleton):
     # def __init__(self):
-        # self.file_handler = FileHandler()
+    # self.file_handler = FileHandler()
 
     def select_menu(self):
         print('')
@@ -49,7 +49,12 @@ class HotelManagement(Singleton):
             self.file_handler = FileHandler()
 
         def show_room_list(self):
-            for room in self.file_handler.room_data:
+            # result = []
+            # for room in self.file_handler.room_data:
+            #     result.append(room)
+            # 가격순서대로 정렬
+            sorted_room_list = sorted(list(self.file_handler.room_data), key=lambda room: room.price)
+            for room in sorted_room_list:
                 room.show_room_information()
 
         def create_room(self):
