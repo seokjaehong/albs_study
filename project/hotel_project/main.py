@@ -7,7 +7,6 @@ if __name__ == '__main__':
     # reservation_manager = hotel_manager.ReservationManagement()
 
     while True:
-
         room_manager = hotel_manager.RoomManagement()
         customer_manager = hotel_manager.CustomerManagement()
         reservation_manager = hotel_manager.ReservationManagement()

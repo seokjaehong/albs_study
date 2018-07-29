@@ -21,9 +21,8 @@ class Singleton():
 
 # class HotelManagement():
 class HotelManagement(Singleton):
-
     # def __init__(self):
-    #     self.file_handler = FileHandler()
+        # self.file_handler = FileHandler()
 
     def select_menu(self):
         print('')
@@ -44,17 +43,6 @@ class HotelManagement(Singleton):
         print('++++++++++++++++++ 기타.밖으로 나가기         ++++++++++++++++++')
         select = input()
         return select
-
-    # def show_data_list(self, data):
-    #     if data == "room":
-    #         for room in self.file_handler.room_data:
-    #             room.show_room_information()
-    #     elif data == "customer":
-    #         for customer in self.file_handler.customer_data:
-    #             customer.show_customer_information()
-    #     elif data == "reservation":
-    #         for reservation in self.file_handler.reservation_data:
-    #             reservation.show_reservation_information()
 
     class RoomManagement:
         def __init__(self):
@@ -152,7 +140,6 @@ class HotelManagement(Singleton):
             check_value = True
             while check_value:
                 print('삭제할 방 ID를 입력해주세요')
-                # HotelManagement().show_data_list("room")
                 self.show_room_list()
                 room_id = input()
 
@@ -168,7 +155,6 @@ class HotelManagement(Singleton):
         def __init__(self):
             self.file_handler = FileHandler()
 
-        # elif data == "customer":
         def show_customer_list(self):
             for customer in self.file_handler.customer_data:
                 customer.show_customer_information()
