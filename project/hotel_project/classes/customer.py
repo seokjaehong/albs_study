@@ -13,7 +13,7 @@ class GeneralCustomer(Customer):
         self.email = email
 
     def show_customer_information(self):
-        print(f'ID: {self.id:<2}| 고객명: {self.name:<12} | 메일주소: {self.email:>15}')
+        print(f'ID: {self.id:<2}| 고객명: {self.name:<6}| 메일주소: {self.email:>15}')
 
 
 class VipCustomer(Customer):
@@ -28,4 +28,4 @@ class VipCustomer(Customer):
         else:
             breakfast = self.breakfast
         print(
-            f'ID: {self.id:<2}| 고객명: {self.name:<12} | 추천조식:{breakfast:<5}, 차량번호:{self.car_number}')
+            f'ID: {self.id:<2}| 고객명: {self.name:<6}| 추천조식:{breakfast:<5} , 차량번호:{self.car_number}')
