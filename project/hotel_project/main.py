@@ -2,19 +2,23 @@ from project.hotel_project.classes.hotel_mgnt import HotelManagement
 
 if __name__ == '__main__':
     hotel_manager = HotelManagement.instance()
-    room_manager = hotel_manager.RoomManagement()
-    customer_manager = hotel_manager.CustomerManagement()
-    reservation_manager = hotel_manager.ReservationManagement()
+    # room_manager = hotel_manager.RoomManagement()
+    # customer_manager = hotel_manager.CustomerManagement()
+    # reservation_manager = hotel_manager.ReservationManagement()
 
     while True:
 
+        room_manager = hotel_manager.RoomManagement()
+        customer_manager = hotel_manager.CustomerManagement()
+        reservation_manager = hotel_manager.ReservationManagement()
+
         select = hotel_manager.select_menu()
         if select == '1':
-            hotel_manager.show_data_list("room")
+            room_manager.show_room_list()
         elif select == '2':
-            hotel_manager.show_data_list("customer")
+            customer_manager.show_customer_list()
         elif select == '3':
-            hotel_manager.show_data_list("reservation")
+            reservation_manager.show_reservation_list()
         elif select == '4':
             reservation_manager.create_reservation()
         elif select == '5':

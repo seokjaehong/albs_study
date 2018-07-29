@@ -1,10 +1,7 @@
 import ast
 import math
 
-from .customer import GeneralCustomer, VipCustomer
-from .room import SingleRoom, DoubleRoom, VipRoom
 from .file_handler import FileHandler
-from .reservation import Reservation
 from project.hotel_project.utils import get_fr_to_date, is_valid_email
 
 
@@ -25,8 +22,8 @@ class Singleton():
 # class HotelManagement():
 class HotelManagement(Singleton):
 
-    def __init__(self):
-        self.file_handler = FileHandler()
+    # def __init__(self):
+    #     self.file_handler = FileHandler()
 
     def select_menu(self):
         print('')
@@ -48,20 +45,24 @@ class HotelManagement(Singleton):
         select = input()
         return select
 
-    def show_data_list(self, data):
-        if data == "room":
-            for room in self.file_handler.room_data:
-                room.show_room_information()
-        elif data == "customer":
-            for customer in self.file_handler.customer_data:
-                customer.show_customer_information()
-        elif data == "reservation":
-            for reservation in self.file_handler.reservation_data:
-                reservation.show_reservation_information()
+    # def show_data_list(self, data):
+    #     if data == "room":
+    #         for room in self.file_handler.room_data:
+    #             room.show_room_information()
+    #     elif data == "customer":
+    #         for customer in self.file_handler.customer_data:
+    #             customer.show_customer_information()
+    #     elif data == "reservation":
+    #         for reservation in self.file_handler.reservation_data:
+    #             reservation.show_reservation_information()
 
     class RoomManagement:
         def __init__(self):
             self.file_handler = FileHandler()
+
+        def show_room_list(self):
+            for room in self.file_handler.room_data:
+                room.show_room_information()
 
         def create_room(self):
             room_number = self.get_room_number()
@@ -151,8 +152,8 @@ class HotelManagement(Singleton):
             check_value = True
             while check_value:
                 print('삭제할 방 ID를 입력해주세요')
-                HotelManagement().show_data_list("room")
-
+                # HotelManagement().show_data_list("room")
+                self.show_room_list()
                 room_id = input()
 
                 for room in self.file_handler.room_data:
@@ -166,6 +167,11 @@ class HotelManagement(Singleton):
     class CustomerManagement:
         def __init__(self):
             self.file_handler = FileHandler()
+
+        # elif data == "customer":
+        def show_customer_list(self):
+            for customer in self.file_handler.customer_data:
+                customer.show_customer_information()
 
         def create_customer(self):
             customer_name = self.get_customer_name()
@@ -218,8 +224,8 @@ class HotelManagement(Singleton):
             check_value = True
             while check_value:
                 print('삭제할 고객 ID를 입력해주세요')
-                HotelManagement().show_data_list("customer")
-
+                # HotelManagement().show_data_list("customer")
+                self.show_customer_list()
                 customer_id = input()
 
                 for customer in self.file_handler.customer_data:
@@ -233,6 +239,10 @@ class HotelManagement(Singleton):
     class ReservationManagement:
         def __init__(self):
             self.file_handler = FileHandler()
+
+        def show_reservation_list(self):
+            for reservation in self.file_handler.reservation_data:
+                reservation.show_reservation_information()
 
         def create_reservation(self):
             print('---------1.예약하실 날짜를 입력해주세요 --------')
@@ -291,7 +301,9 @@ class HotelManagement(Singleton):
         def get_reservable_customer(self):
             check_value = True
             while check_value:
-                HotelManagement().show_data_list("customer")
+                # HotelManagement().show_data_list("customer")
+                for customer in self.file_handler.customer_data:
+                    customer.show_customer_information()
                 customer_id = input()
 
                 for customer in self.file_handler.customer_data:
@@ -318,8 +330,9 @@ class HotelManagement(Singleton):
             check_value = True
             while check_value:
                 print("취소하실 예약ID를 선택해주세요")
-                for reservation in self.file_handler.reservation_data:
-                    reservation.show_reservation_information()
+                self.show_reservation_list()
+                # for reservation in self.file_handler.reservation_data:
+                #     reservation.show_reservation_information()
 
                 reservation_id = input()
                 for reservation in self.file_handler.reservation_data:
