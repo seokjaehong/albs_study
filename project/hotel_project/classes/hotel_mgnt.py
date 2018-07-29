@@ -1,8 +1,8 @@
 import ast
 import math
 
-from project.hotel_project.classes.customer import GeneralCustomer, VipCustomer
-from project.hotel_project.classes.room import SingleRoom, DoubleRoom, VipRoom
+from .customer import GeneralCustomer, VipCustomer
+from .room import SingleRoom, DoubleRoom, VipRoom
 from .file_handler import FileHandler
 from .reservation import Reservation
 from project.hotel_project.utils import get_fr_to_date, is_valid_email
@@ -68,17 +68,16 @@ class HotelManagement(Singleton):
             room_price = self.get_room_price()
             room_type = self.get_room_type()
             room_max_people = self.get_room_max_people()
-            room_additional_info = self.get_room_additional_info(room_type)
+            room_breakfast = self.get_room_additional_info(room_type)
 
-            result = []
+            result = {
+                'room_number': room_number,
+                'room_price': room_price,
+                'room_type': room_type,
+                'room_max_people': room_max_people,
+                'room_breakfast': room_breakfast,
+            }
             max_id_value = self.file_handler.get_max_id("room")
-            if room_type == "1":
-                result = SingleRoom(max_id_value + 1, room_number, room_price, room_max_people)
-            elif room_type == "2":
-                result = DoubleRoom(max_id_value + 1, room_number, room_price, room_max_people)
-            elif room_type == "3":
-                result = VipRoom(max_id_value + 1, room_number, room_price, room_max_people,
-                                 room_additional_info['breakfast'])
 
             self.file_handler.write_csv_file(result, max_id_value, 'room', room_type)
 
@@ -146,7 +145,7 @@ class HotelManagement(Singleton):
                 breakfast = input()
             else:
                 breakfast = None
-            return {'breakfast': breakfast}
+            return breakfast
 
         def delete_room(self):
             check_value = True
@@ -172,13 +171,12 @@ class HotelManagement(Singleton):
             customer_name = self.get_customer_name()
             customer_type = self.get_customer_type()
             customer_additional_info = self.get_customer_additional_info(customer_type)
+
+            result = {
+                'customer_name': customer_name,
+                'customer_additional_info': customer_additional_info,
+            }
             max_id_value = self.file_handler.get_max_id("customer")
-            result = []
-            if customer_type == "1":
-                result = GeneralCustomer(max_id_value + 1, customer_name, customer_additional_info)
-            elif customer_type == "2":
-                result = VipCustomer(max_id_value + 1, customer_name, customer_additional_info['customer_car_number'],
-                                     customer_additional_info['customer_breakfast'])
             self.file_handler.write_csv_file(result, max_id_value, 'customer', customer_type)
 
         def get_customer_type(self):
@@ -205,7 +203,7 @@ class HotelManagement(Singleton):
                     print('---------고객email을 입력해주세요 --------')
                     customer_email = input()
                     if is_valid_email(customer_email):
-                        return customer_email
+                        return {'customer_email': customer_email}
                     else:
                         print('email형식에 맞게 입력해주세요.( ex) hsj2334@gmail.com')
 
@@ -281,12 +279,14 @@ class HotelManagement(Singleton):
                     result.append(room)
 
             max_id_value = self.file_handler.get_max_id("reservation")
-            reservation = Reservation(id=max_id_value + 1, customer=result[0], room=result[1], fr_date=fr_date,
-                                      to_date=to_date)
+            result = {
+                'customer': result[0],
+                'room': result[1],
+                'fr_date': fr_date,
+                'to_date': to_date
+            }
 
-            self.file_handler.write_csv_file(reservation, max_id_value, 'reservation')
-
-            print(f'{reservation.customer.name:<5}님이 {fr_date}~{to_date}까지 {reservation.room.number:<5}호에 예약을 하셨습니다')
+            self.file_handler.write_csv_file(result, max_id_value, 'reservation')
 
         def get_reservable_customer(self):
             check_value = True

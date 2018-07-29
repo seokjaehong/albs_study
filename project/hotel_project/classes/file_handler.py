@@ -42,26 +42,42 @@ class FileHandler:
         r.close()
         return result
 
-    def write_csv_file(self, obj, max_id_value, class_name, additional_type=None):
+    def write_csv_file(self, result, max_id_value, class_name, additional_type=None):
         if class_name == "reservation":
             f = open(self.__CSV_RESERVATION_FILE, 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
+
+            obj = Reservation(
+                id=max_id_value + 1,
+                customer=result['customer'],
+                room=result['room'],
+                fr_date=result['fr_date'],
+                to_date=result['to_date']
+            )
             wr.writerow([
                 max_id_value + 1,
                 obj.customer.__dict__,
                 obj.room.__dict__,
                 obj.fr_date,
-                obj.to_date
+                obj.to_date,
             ])
             f.close()
+            print(f'{obj.customer.name:<5}님이 {obj.fr_date}~{obj.to_date}까지 {obj.room.number:<5}호에 예약을 하셨습니다')
         elif class_name == "customer":
             f = open(self.__CSV_CUSTOMER_FILE, 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
             if additional_type == '1':
+                obj = GeneralCustomer(max_id_value + 1, result['customer_name'],
+                                      result['customer_additional_info']['customer_email'])
                 wr.writerow([
                     'GeneralCustomer', max_id_value + 1, obj.name, obj.email
                 ])
             elif additional_type == '2':
+                obj = VipCustomer(
+                    max_id_value + 1,
+                    result['customer_name'],
+                    result['customer_additional_info']['customer_car_number'],
+                    result['customer_additional_info']['customer_breakfast'])
                 wr.writerow([
                     'VipCustomer', max_id_value + 1, obj.name, obj.car_number, obj.breakfast
                 ])
@@ -70,17 +86,25 @@ class FileHandler:
             f = open(self.__CSV_ROOM_FILE, 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
             if additional_type == '1':
+                obj = SingleRoom(max_id_value + 1, result['room_number'], result['room_price'],
+                                 result['room_max_people'])
                 wr.writerow([
                     'single', max_id_value + 1, obj.number, obj.price, obj.max_people
                 ])
+
             elif additional_type == '2':
+                obj = DoubleRoom(max_id_value + 1, result['room_number'], result['room_price'],
+                                 result['room_max_people'])
                 wr.writerow([
                     'double', max_id_value + 1, obj.number, obj.price, obj.max_people
                 ])
             elif additional_type == '3':
+                obj = VipRoom(max_id_value + 1, result['room_number'], result['room_price'], result['room_max_people'],
+                              result['room_breakfast'])
                 wr.writerow([
                     'VIP', max_id_value + 1, obj.number, obj.price, obj.max_people, obj.breakfast
                 ])
+
             f.close()
 
     def get_max_id(self, class_name):
