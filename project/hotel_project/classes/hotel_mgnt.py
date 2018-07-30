@@ -19,10 +19,12 @@ class Singleton():
         return cls.__instance
 
 
-# class HotelManagement():
 class HotelManagement(Singleton):
-    # def __init__(self):
-    # self.file_handler = FileHandler()
+
+    def __init__(self):
+        self.room_manager = HotelManagement.RoomManagement()
+        self.customer_manager = HotelManagement.CustomerManagement()
+        self.reservation_manager = HotelManagement.ReservationManagement()
 
     def select_menu(self):
         print('')
@@ -44,15 +46,33 @@ class HotelManagement(Singleton):
         select = input()
         return select
 
-    class RoomManagement:
+    class FileHandlerManagement:
         def __init__(self):
-            self.file_handler = FileHandler()
+            self.file_format = {
+                'room': './csv_files/room.csv',
+                'reservation': './csv_files/reservation.csv',
+                'customer': './csv_files/customer.csv'
+            }
+            self.load()
+
+        # def save(self):
+        #     self.file_handler.save()
+
+        def load(self):
+            self.file_handler = FileHandler(self.file_format)
+
+        # def go_next_turn(self):
+        #     self.save()
+        #     self.load()
+
+    class RoomManagement(FileHandlerManagement):
+        def __init__(self):
+            super(HotelManagement.RoomManagement, self).__init__()
+            super().load()
 
         def show_room_list(self):
-            # result = []
-            # for room in self.file_handler.room_data:
-            #     result.append(room)
-            # 가격순서대로 정렬
+            self.load()
+
             sorted_room_list = sorted(list(self.file_handler.room_data), key=lambda room: room.price)
             for room in sorted_room_list:
                 room.show_room_information()
@@ -73,7 +93,7 @@ class HotelManagement(Singleton):
             }
             max_id_value = self.file_handler.get_max_id("room")
 
-            self.file_handler.write_csv_file(result, max_id_value, 'room')
+            self.file_handler.write_csv_file(result, max_id_value, 'room', self.file_format)
 
         def get_room_number(self):
             check_value = True
@@ -150,17 +170,21 @@ class HotelManagement(Singleton):
 
                 for room in self.file_handler.room_data:
                     if room.id == room_id:
-                        self.file_handler.delete_csv_file(room_id, "room")
+                        self.file_handler.delete_csv_file(room_id, "room", self.file_format)
                         check_value = False
+
                 if check_value:
                     print('삭제가능한 룸ID를 입력해주세요')
             print('-----------삭제완료-----------')
 
-    class CustomerManagement:
+    class CustomerManagement(FileHandlerManagement):
         def __init__(self):
-            self.file_handler = FileHandler()
+
+            super(HotelManagement.CustomerManagement, self).__init__()
+            super().load()
 
         def show_customer_list(self):
+            self.load()
             for customer in self.file_handler.customer_data:
                 customer.show_customer_information()
 
@@ -171,10 +195,11 @@ class HotelManagement(Singleton):
 
             result = {
                 'customer_name': customer_name,
+                'customer_type': customer_type,
                 'customer_additional_info': customer_additional_info,
             }
             max_id_value = self.file_handler.get_max_id("customer")
-            self.file_handler.write_csv_file(result, max_id_value, 'customer')
+            self.file_handler.write_csv_file(result, max_id_value, 'customer', self.file_format)
 
         def get_customer_type(self):
             check_value = True
@@ -226,17 +251,20 @@ class HotelManagement(Singleton):
 
                 for customer in self.file_handler.customer_data:
                     if customer.id == customer_id:
-                        self.file_handler.delete_csv_file(customer_id, "customer")
+                        self.file_handler.delete_csv_file(customer_id, "customer", self.file_format)
                         check_value = False
                 if check_value:
                     print('삭제가능한 고객 ID를 입력해주세요')
             print('-----------삭제완료-----------')
 
-    class ReservationManagement:
+    class ReservationManagement(FileHandlerManagement):
         def __init__(self):
-            self.file_handler = FileHandler()
+            # self.file_handler = FileHandler()
+            super(HotelManagement.ReservationManagement, self).__init__()
+            super().load()
 
         def show_reservation_list(self):
+            self.load()
             for reservation in self.file_handler.reservation_data:
                 reservation.show_reservation_information()
 
@@ -292,7 +320,7 @@ class HotelManagement(Singleton):
                 'to_date': to_date
             }
 
-            self.file_handler.write_csv_file(result, max_id_value, 'reservation')
+            self.file_handler.write_csv_file(result, max_id_value, 'reservation', self.file_format)
 
         def get_reservable_customer(self):
             check_value = True
@@ -327,9 +355,6 @@ class HotelManagement(Singleton):
             while check_value:
                 print("취소하실 예약ID를 선택해주세요")
                 self.show_reservation_list()
-                # for reservation in self.file_handler.reservation_data:
-                #     reservation.show_reservation_information()
-
                 reservation_id = input()
                 for reservation in self.file_handler.reservation_data:
                     if reservation.id == reservation_id:
@@ -339,5 +364,5 @@ class HotelManagement(Singleton):
 
         def cancle_reservation(self):
             reservation_cancle_id = self.get_reservation_id()
-            self.file_handler.delete_csv_file(reservation_cancle_id, "reservation")
+            self.file_handler.delete_csv_file(reservation_cancle_id, "reservation", self.file_format)
             print('예약이 성공적으로 취소되었습니다.')

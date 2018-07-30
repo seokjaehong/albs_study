@@ -7,19 +7,28 @@ from project.hotel_project.classes.reservation import Reservation
 from project.hotel_project.classes.room import SingleRoom, DoubleRoom, VipRoom
 
 
+def save(reader=None, writer=None):
+    if reader:
+        reader.close()
+    if writer:
+        writer.close()
+    pass
+
+
 class FileHandler:
-    __CSV_ROOM_FILE = './csv_files/room.csv'
-    __CSV_CUSTOMER_FILE = './csv_files/customer.csv'
-    __CSV_RESERVATION_FILE = './csv_files/reservation.csv'
-    __CSV_ROOM_TEMP_FILE = './temp_files/room_temp.csv'
-    __CSV_CUSTOMER_TEMP_FILE = './temp_files/customer_temp.csv'
-    __CSV_RESERVATION_TEMP_FILE = './temp_files/reservation_temp.csv'
+    # __CSV_ROOM_FILE = './csv_files/room.csv'
+    # __CSV_CUSTOMER_FILE = './csv_files/customer.csv'
+    # __CSV_RESERVATION_FILE = './csv_files/reservation.csv'
+    # __CSV_ROOM_TEMP_FILE = './temp_files/room_temp.csv'
+    # __CSV_CUSTOMER_TEMP_FILE = './temp_files/customer_temp.csv'
+    # __CSV_RESERVATION_TEMP_FILE = './temp_files/reservation_temp.csv'
     ENCODING = 'utf-8'
 
-    def __init__(self):
-        self.room_data = self.read_csv_file(self.__CSV_ROOM_FILE, self.ENCODING)
-        self.customer_data = self.read_csv_file(self.__CSV_CUSTOMER_FILE, self.ENCODING)
-        self.reservation_data = self.read_csv_file(self.__CSV_RESERVATION_FILE, self.ENCODING)
+    def __init__(self, file_format):
+        self.CSV_FILE = file_format
+        self.room_data = self.read_csv_file(file_format['room'], self.ENCODING)
+        self.customer_data = self.read_csv_file(file_format['customer'], self.ENCODING)
+        self.reservation_data = self.read_csv_file(file_format['reservation'], self.ENCODING)
 
     def read_csv_file(self, file_name, encoding):
         r = open(file_name, 'r', encoding=encoding)
@@ -39,12 +48,13 @@ class FileHandler:
             else:
                 result.append(Reservation(data[0], data[1], data[2], datetime.datetime.strptime(data[3], '%Y-%m-%d'),
                                           datetime.datetime.strptime(data[4], '%Y-%m-%d')))
-        r.close()
+        # r.close()
+        save(reader=r)
         return result
 
-    def write_csv_file(self, result, max_id_value, class_name):
+    def write_csv_file(self, result, max_id_value, class_name, file_format):
         if class_name == "reservation":
-            f = open(self.__CSV_RESERVATION_FILE, 'a', encoding=self.ENCODING, newline='')
+            f = open(file_format[class_name], 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
 
             obj = Reservation(
@@ -61,10 +71,11 @@ class FileHandler:
                 obj.fr_date,
                 obj.to_date,
             ])
-            f.close()
             print(f'{obj.customer.name:<5}님이 {obj.fr_date}~{obj.to_date}까지 {obj.room.number:<5}호에 예약을 하셨습니다')
+            save(writer=f)
+
         elif class_name == "customer":
-            f = open(self.__CSV_CUSTOMER_FILE, 'a', encoding=self.ENCODING, newline='')
+            f = open(file_format[class_name], 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
             if result['customer_type'] == '1':
                 obj = GeneralCustomer(max_id_value + 1, result['customer_name'],
@@ -81,9 +92,10 @@ class FileHandler:
                 wr.writerow([
                     'VipCustomer', max_id_value + 1, obj.name, obj.car_number, obj.breakfast
                 ])
-            f.close()
+            save(writer=f)
+
         elif class_name == "room":
-            f = open(self.__CSV_ROOM_FILE, 'a', encoding=self.ENCODING, newline='')
+            f = open(file_format[class_name], 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
             if result['room_type'] == '1':
                 obj = SingleRoom(max_id_value + 1, result['room_number'], result['room_price'],
@@ -104,8 +116,7 @@ class FileHandler:
                 wr.writerow([
                     'VIP', max_id_value + 1, obj.number, obj.price, obj.max_people, obj.breakfast
                 ])
-
-            f.close()
+            save(writer=f)
 
     def get_max_id(self, class_name):
         max_id_value = 0
@@ -122,18 +133,22 @@ class FileHandler:
                 max_id_value = int(data.id)
         return max_id_value
 
-    def delete_csv_file(self, id, class_name):
+    def delete_csv_file(self, id, class_name, file_format):
+        __CSV_ROOM_TEMP_FILE = './temp_files/room_temp.csv'
+        __CSV_CUSTOMER_TEMP_FILE = './temp_files/customer_temp.csv'
+        __CSV_RESERVATION_TEMP_FILE = './temp_files/reservation_temp.csv'
+
         origin_file = []
         temp_file = []
         if class_name == "reservation":
-            origin_file = self.__CSV_RESERVATION_FILE
-            temp_file = self.__CSV_RESERVATION_TEMP_FILE
+            origin_file = file_format[class_name]
+            temp_file = __CSV_RESERVATION_TEMP_FILE
         elif class_name == "room":
-            origin_file = self.__CSV_ROOM_FILE
-            temp_file = self.__CSV_ROOM_TEMP_FILE
+            origin_file = file_format[class_name]
+            temp_file = __CSV_ROOM_TEMP_FILE
         elif class_name == "customer":
-            origin_file = self.__CSV_CUSTOMER_FILE
-            temp_file = self.__CSV_CUSTOMER_TEMP_FILE
+            origin_file = file_format[class_name]
+            temp_file = __CSV_CUSTOMER_TEMP_FILE
 
         r = open(origin_file, 'r', encoding=self.ENCODING)
         data_list = csv.reader(r)
@@ -147,12 +162,12 @@ class FileHandler:
             else:
                 if data[1] != id:
                     wr.writerow(data)
+        save(reader=r, writer=f)
+        # self.save(r)
+        self.copy_temp_to_origin(temp_file, origin_file)
 
-        f.close()
-        r.close()
-        shutil.copy(temp_file, origin_file)
-
-        f = open(temp_file, 'w')
+    def copy_temp_to_origin(self, temp, origin):
+        shutil.copy(temp, origin)
+        f = open(temp, 'w')
         f.truncate()
-
         f.close()
