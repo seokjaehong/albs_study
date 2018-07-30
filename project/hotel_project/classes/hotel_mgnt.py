@@ -73,7 +73,7 @@ class HotelManagement(Singleton):
             }
             max_id_value = self.file_handler.get_max_id("room")
 
-            self.file_handler.write_csv_file(result, max_id_value, 'room', room_type)
+            self.file_handler.write_csv_file(result, max_id_value, 'room')
 
         def get_room_number(self):
             check_value = True
@@ -174,7 +174,7 @@ class HotelManagement(Singleton):
                 'customer_additional_info': customer_additional_info,
             }
             max_id_value = self.file_handler.get_max_id("customer")
-            self.file_handler.write_csv_file(result, max_id_value, 'customer', customer_type)
+            self.file_handler.write_csv_file(result, max_id_value, 'customer')
 
         def get_customer_type(self):
             check_value = True
@@ -200,7 +200,9 @@ class HotelManagement(Singleton):
                     print('---------고객email을 입력해주세요 --------')
                     customer_email = input()
                     if is_valid_email(customer_email):
-                        return {'customer_email': customer_email}
+                        return {
+                            'customer_email': customer_email
+                        }
                     else:
                         print('email형식에 맞게 입력해주세요.( ex) hsj2334@gmail.com')
 
@@ -209,7 +211,10 @@ class HotelManagement(Singleton):
                 customer_car_number = input()
                 print('---------고객의 추천조식을 입력해주세요 --------')
                 customer_breakfast = input()
-                return {'customer_car_number': customer_car_number, 'customer_breakfast': customer_breakfast}
+                return {
+                    'customer_car_number': customer_car_number,
+                    'customer_breakfast': customer_breakfast
+                }
 
         def delete_customer(self):
             check_value = True

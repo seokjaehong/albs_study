@@ -7,4 +7,3 @@
 10,"{'id': '8', 'name': '루니', 'email': 'rooney@gmail.com'}","{'id': '6', 'number': '104', 'price': '1000000', 'max_people': '2', 'breakfast': '치킨', 'clean_service': True}",2018-08-01,2018-08-02
 11,"{'id': '4', 'name': '김연아', 'car_number': 'ABS30', 'breakfast': '닭가슴살'}","{'id': '10', 'number': '1010', 'price': '10000', 'max_people': '2', 'breakfast': False, 'clean_service': True}",2018-08-01,2018-08-05
 12,"{'id': '5', 'name': '미나', 'car_number': '19모2899', 'breakfast': '도시락'}","{'id': '12', 'number': '2011', 'price': '300000', 'max_people': '2', 'breakfast': '토마토', 'clean_service': True}",2018-07-30,2018-08-02
-13,"{'id': '8', 'name': '루니', 'email': 'rooney@gmail.com'}","{'id': '2', 'number': '102', 'price': '15000', 'max_people': '2', 'breakfast': False, 'clean_service': False}",2018-08-01,2018-08-09

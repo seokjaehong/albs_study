@@ -42,7 +42,7 @@ class FileHandler:
         r.close()
         return result
 
-    def write_csv_file(self, result, max_id_value, class_name, additional_type=None):
+    def write_csv_file(self, result, max_id_value, class_name):
         if class_name == "reservation":
             f = open(self.__CSV_RESERVATION_FILE, 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
@@ -66,13 +66,13 @@ class FileHandler:
         elif class_name == "customer":
             f = open(self.__CSV_CUSTOMER_FILE, 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
-            if additional_type == '1':
+            if result['customer_type'] == '1':
                 obj = GeneralCustomer(max_id_value + 1, result['customer_name'],
                                       result['customer_additional_info']['customer_email'])
                 wr.writerow([
                     'GeneralCustomer', max_id_value + 1, obj.name, obj.email
                 ])
-            elif additional_type == '2':
+            elif result['customer_type'] == '2':
                 obj = VipCustomer(
                     max_id_value + 1,
                     result['customer_name'],
@@ -85,20 +85,20 @@ class FileHandler:
         elif class_name == "room":
             f = open(self.__CSV_ROOM_FILE, 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
-            if additional_type == '1':
+            if result['room_type'] == '1':
                 obj = SingleRoom(max_id_value + 1, result['room_number'], result['room_price'],
                                  result['room_max_people'])
                 wr.writerow([
                     'single', max_id_value + 1, obj.number, obj.price, obj.max_people
                 ])
 
-            elif additional_type == '2':
+            elif result['room_type'] == '2':
                 obj = DoubleRoom(max_id_value + 1, result['room_number'], result['room_price'],
                                  result['room_max_people'])
                 wr.writerow([
                     'double', max_id_value + 1, obj.number, obj.price, obj.max_people
                 ])
-            elif additional_type == '3':
+            elif result['room_type'] == '3':
                 obj = VipRoom(max_id_value + 1, result['room_number'], result['room_price'], result['room_max_people'],
                               result['room_breakfast'])
                 wr.writerow([
