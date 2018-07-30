@@ -7,14 +7,6 @@ from project.hotel_project.classes.reservation import Reservation
 from project.hotel_project.classes.room import SingleRoom, DoubleRoom, VipRoom
 
 
-def save(reader=None, writer=None):
-    if reader:
-        reader.close()
-    if writer:
-        writer.close()
-    pass
-
-
 class FileHandler:
     # __CSV_ROOM_FILE = './csv_files/room.csv'
     # __CSV_CUSTOMER_FILE = './csv_files/customer.csv'
@@ -29,6 +21,9 @@ class FileHandler:
         self.room_data = self.read_csv_file(file_format['room'], self.ENCODING)
         self.customer_data = self.read_csv_file(file_format['customer'], self.ENCODING)
         self.reservation_data = self.read_csv_file(file_format['reservation'], self.ENCODING)
+
+    # def save(self, file):
+    #     file.close()
 
     def read_csv_file(self, file_name, encoding):
         r = open(file_name, 'r', encoding=encoding)
@@ -48,8 +43,8 @@ class FileHandler:
             else:
                 result.append(Reservation(data[0], data[1], data[2], datetime.datetime.strptime(data[3], '%Y-%m-%d'),
                                           datetime.datetime.strptime(data[4], '%Y-%m-%d')))
-        # r.close()
-        save(reader=r)
+        r.close()
+        # self.save(r)
         return result
 
     def write_csv_file(self, result, max_id_value, class_name, file_format):
@@ -72,8 +67,8 @@ class FileHandler:
                 obj.to_date,
             ])
             print(f'{obj.customer.name:<5}님이 {obj.fr_date}~{obj.to_date}까지 {obj.room.number:<5}호에 예약을 하셨습니다')
-            save(writer=f)
-
+            # self.save(f)
+            f.close()
         elif class_name == "customer":
             f = open(file_format[class_name], 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
@@ -92,7 +87,9 @@ class FileHandler:
                 wr.writerow([
                     'VipCustomer', max_id_value + 1, obj.name, obj.car_number, obj.breakfast
                 ])
-            save(writer=f)
+            # self.save(f)
+            f.close()
+
 
         elif class_name == "room":
             f = open(file_format[class_name], 'a', encoding=self.ENCODING, newline='')
@@ -116,8 +113,8 @@ class FileHandler:
                 wr.writerow([
                     'VIP', max_id_value + 1, obj.number, obj.price, obj.max_people, obj.breakfast
                 ])
-            save(writer=f)
-
+            # self.save(f)
+            f.close()
     def get_max_id(self, class_name):
         max_id_value = 0
         data_list = []
@@ -162,12 +159,17 @@ class FileHandler:
             else:
                 if data[1] != id:
                     wr.writerow(data)
-        save(reader=r, writer=f)
         # self.save(r)
+        # self.save(f)
+        # self.save(r)
+        r.close()
+        f.close()
         self.copy_temp_to_origin(temp_file, origin_file)
 
     def copy_temp_to_origin(self, temp, origin):
         shutil.copy(temp, origin)
+
         f = open(temp, 'w')
         f.truncate()
+
         f.close()
