@@ -53,17 +53,9 @@ class HotelManagement(Singleton):
                 'reservation': './csv_files/reservation.csv',
                 'customer': './csv_files/customer.csv'
             }
-            self.load()
-
-        # def save(self,file_format):
-        #     FileHandler.save(file=file_format)
 
         def load(self):
             self.file_handler = FileHandler(self.file_format)
-
-        # def go_next_turn(self):
-        #     self.save()
-        #     self.load()
 
     class RoomManagement(FileHandlerManagement):
         def __init__(self):
@@ -72,12 +64,12 @@ class HotelManagement(Singleton):
 
         def show_room_list(self):
             self.load()
-
             sorted_room_list = sorted(list(self.file_handler.room_data), key=lambda room: room.price)
             for room in sorted_room_list:
                 room.show_room_information()
 
         def create_room(self):
+            self.load()
             room_number = self.get_room_number()
             room_price = self.get_room_price()
             room_type = self.get_room_type()
@@ -162,6 +154,7 @@ class HotelManagement(Singleton):
             return breakfast
 
         def delete_room(self):
+            self.load()
             check_value = True
             while check_value:
                 print('삭제할 방 ID를 입력해주세요')
@@ -179,7 +172,6 @@ class HotelManagement(Singleton):
 
     class CustomerManagement(FileHandlerManagement):
         def __init__(self):
-
             super(HotelManagement.CustomerManagement, self).__init__()
             super().load()
 
@@ -243,6 +235,7 @@ class HotelManagement(Singleton):
                 }
 
         def delete_customer(self):
+            self.load()
             check_value = True
             while check_value:
                 print('삭제할 고객 ID를 입력해주세요')
@@ -260,7 +253,6 @@ class HotelManagement(Singleton):
 
     class ReservationManagement(FileHandlerManagement):
         def __init__(self):
-            # self.file_handler = FileHandler()
             super(HotelManagement.ReservationManagement, self).__init__()
             super().load()
 
@@ -270,6 +262,7 @@ class HotelManagement(Singleton):
                 reservation.show_reservation_information()
 
         def create_reservation(self):
+            self.load()
             print('---------1.예약하실 날짜를 입력해주세요 --------')
             reserve_date = get_fr_to_date()
             fr_date = reserve_date['fr_date']
@@ -287,7 +280,7 @@ class HotelManagement(Singleton):
             print('---------5.예약이 완료되었습니다.--------')
 
         def show_available_room_list(self, fr_date, to_date):
-            self.load()
+
             reservable_room_list = self.file_handler.room_data
             reservation_list = self.file_handler.reservation_data
 
@@ -303,7 +296,7 @@ class HotelManagement(Singleton):
             return reservable_room_list
 
         def create_reservation_detail(self, customer_id, room_id, fr_date, to_date):
-            self.load()
+            # self.load()
             result = []
 
             for customer in self.file_handler.customer_data:
@@ -325,6 +318,8 @@ class HotelManagement(Singleton):
             self.file_handler.write_csv_file(result, max_id_value, 'reservation', self.file_format)
 
         def get_reservable_customer(self):
+            # self.load()
+
             check_value = True
             while check_value:
                 # HotelManagement().show_data_list("customer")
@@ -340,6 +335,7 @@ class HotelManagement(Singleton):
                     print('예약가능한 고객 ID를 입력해주세요')
 
         def get_reservable_room_id(self, fr_date, to_date):
+            # self.load()
             check_value = True
             while check_value:
                 reservable_room_list = self.show_available_room_list(fr_date, to_date)
@@ -352,6 +348,12 @@ class HotelManagement(Singleton):
                 if check_value:
                     print('예약가능한 룸ID를 입력해주세요')
 
+        def cancle_reservation(self):
+            self.load()
+            reservation_cancle_id = self.get_reservation_id()
+            self.file_handler.delete_csv_file(reservation_cancle_id, "reservation", self.file_format)
+            print('예약이 성공적으로 취소되었습니다.')
+
         def get_reservation_id(self):
             check_value = True
             while check_value:
@@ -363,9 +365,3 @@ class HotelManagement(Singleton):
                         return reservation_id
                 if check_value:
                     print('취소가능한 예약ID를 입력해주세요')
-
-        def cancle_reservation(self):
-            self.load()
-            reservation_cancle_id = self.get_reservation_id()
-            self.file_handler.delete_csv_file(reservation_cancle_id, "reservation", self.file_format)
-            print('예약이 성공적으로 취소되었습니다.')

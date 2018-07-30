@@ -4,7 +4,6 @@ if __name__ == '__main__':
     hotel_manager = HotelManagement.instance()
 
     while True:
-
         select = hotel_manager.select_menu()
         if select == '1':
             hotel_manager.room_manager.show_room_list()

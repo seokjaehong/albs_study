@@ -8,16 +8,9 @@ from project.hotel_project.classes.room import SingleRoom, DoubleRoom, VipRoom
 
 
 class FileHandler:
-    # __CSV_ROOM_FILE = './csv_files/room.csv'
-    # __CSV_CUSTOMER_FILE = './csv_files/customer.csv'
-    # __CSV_RESERVATION_FILE = './csv_files/reservation.csv'
-    # __CSV_ROOM_TEMP_FILE = './temp_files/room_temp.csv'
-    # __CSV_CUSTOMER_TEMP_FILE = './temp_files/customer_temp.csv'
-    # __CSV_RESERVATION_TEMP_FILE = './temp_files/reservation_temp.csv'
     ENCODING = 'utf-8'
 
     def __init__(self, file_format):
-        self.CSV_FILE = file_format
         self.room_data = self.read_csv_file(file_format['room'], self.ENCODING)
         self.customer_data = self.read_csv_file(file_format['customer'], self.ENCODING)
         self.reservation_data = self.read_csv_file(file_format['reservation'], self.ENCODING)
@@ -90,7 +83,6 @@ class FileHandler:
             # self.save(f)
             f.close()
 
-
         elif class_name == "room":
             f = open(file_format[class_name], 'a', encoding=self.ENCODING, newline='')
             wr = csv.writer(f)
@@ -115,6 +107,7 @@ class FileHandler:
                 ])
             # self.save(f)
             f.close()
+
     def get_max_id(self, class_name):
         max_id_value = 0
         data_list = []
@@ -159,9 +152,7 @@ class FileHandler:
             else:
                 if data[1] != id:
                     wr.writerow(data)
-        # self.save(r)
-        # self.save(f)
-        # self.save(r)
+
         r.close()
         f.close()
         self.copy_temp_to_origin(temp_file, origin_file)
